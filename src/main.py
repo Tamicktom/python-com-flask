@@ -11,7 +11,7 @@ def index_tasks():
 
     output = {
             "tasks": task_list,
-            "total": tasks.__len__()
+            "total": len(tasks)
             }
 
     return jsonify(output)
@@ -22,7 +22,7 @@ def store_task():
 
     parsedData = CreateTaskSchema.model_validate(data)
 
-    id = tasks.__len__() + 1
+    id = len(tasks) + 1
 
     task = Task(
             id,
