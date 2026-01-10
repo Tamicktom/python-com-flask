@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 tasks = []
 
-@app.get("/task")
+@app.get("/tasks")
 def index_tasks():
     task_list = [task.to_dict() for task in tasks]
 
@@ -15,6 +15,17 @@ def index_tasks():
             }
 
     return jsonify(output)
+
+@app.get("/tasks/<int:id>")
+def show_task(id: int):
+    task = None
+    for t in tasks:
+        if t.id == id:
+            task = t
+            return jsonify(task.to_dict())
+
+
+    return jsonify({"message": "Task não encontrada"}), 404
 
 @app.post("/task")
 def store_task():
