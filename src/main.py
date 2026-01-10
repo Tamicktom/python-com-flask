@@ -18,12 +18,9 @@ def index_tasks():
 
 @app.get("/tasks/<int:id>")
 def show_task(id: int):
-    task = None
     for t in tasks:
         if t.id == id:
-            task = t
-            return jsonify(task.to_dict())
-
+            return jsonify(t.to_dict())
 
     return jsonify({"message": "Task não encontrada"}), 404
 
