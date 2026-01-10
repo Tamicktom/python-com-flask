@@ -1,1 +1,6 @@
-/python_com_flask.egg-info
+.py[cod]
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.pdm-python
