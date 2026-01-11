@@ -4,6 +4,7 @@ from models.task import Task, CreateTaskSchema
 app = Flask(__name__)
 
 tasks = []
+task_id = 0
 
 @app.get("/tasks")
 def index_tasks():
@@ -50,7 +51,7 @@ def store_task():
 
     parsedData = CreateTaskSchema.model_validate(data)
 
-    id = len(tasks) + 1
+    id = task_id + 1
 
     task = Task(
             id,
@@ -64,6 +65,16 @@ def store_task():
     return jsonify({
         "message": "Task criada com sucesso"
         }), 201
+
+@app.delete("/tasks/<int:id>")
+def delete_task(id: int):
+    for task in tasks:
+        if task.id == id:
+            tasks.remove(task)
+
+    return jsonify({
+        "message": "Task deletada com sucesso"
+        })
 
 if __name__ == "__main__":
     app.run(debug=True)
