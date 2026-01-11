@@ -77,7 +77,7 @@ def delete_task(id: int):
 
     return jsonify({
         "message": "Task deletada com sucesso"
-        })
+        }), 200
 
 if __name__ == "__main__":
     app.run(debug=True)

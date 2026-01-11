@@ -78,3 +78,10 @@ class TestClass:
             assert "completed" in response_json
             response_task_completed = response_json["completed"]
             assert response_task_completed == body["completed"]
+
+    def test_delete_task(self):
+        if tasks:
+            task_id = tasks[0]
+
+            response = requests.delete(f"{BASE_URL}/tasks/{task_id}")
+            assert response.status_code == 200
