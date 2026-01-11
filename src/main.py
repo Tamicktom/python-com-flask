@@ -31,6 +31,7 @@ def update_task(id: int):
     for t in tasks:
         if t.id == id:
             task = t
+            break
 
     if (task is None):
         return jsonify({"message": "Task não encontrada"}), 404
@@ -71,6 +72,7 @@ def delete_task(id: int):
     for task in tasks:
         if task.id == id:
             tasks.remove(task)
+            break
 
     return jsonify({
         "message": "Task deletada com sucesso"
