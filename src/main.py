@@ -27,7 +27,7 @@ def show_task(id: int):
 
 @app.put("/tasks/<int:id>")
 def update_task(id: int):
-    task: None | CreateTaskSchema = None
+    task: None | Task = None
     for t in tasks:
         if t.id == id:
             task = t
@@ -44,7 +44,7 @@ def update_task(id: int):
     task.description = parsedData.description
     task.completed = parsedData.completed
 
-    return jsonify({"message": "Task atualizado com sucesso"}), 200
+    return jsonify(task.to_dict()), 200
 
 @app.post("/tasks")
 def store_task():

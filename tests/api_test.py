@@ -47,3 +47,34 @@ class TestClass:
             assert "title" in response_json
             assert "description" in response_json
             assert "completed" in response_json
+
+    def test_update_task(self):
+        if tasks:
+            task_id = tasks[0]
+            
+            body = {
+                    "title": "task atualizada",
+                    "description": "task atualizada na descrição",
+                    "completed": True
+                    }
+
+            response = requests.put(f"{BASE_URL}/tasks/{task_id}", json=body)
+            assert response.status_code == 200
+
+            response_json = response.json()
+
+            assert "id" in response_json
+            response_task_id = response_json["id"]
+            assert response_task_id == task_id
+
+            assert "title" in response_json
+            response_task_title = response_json["title"]
+            assert response_task_title == body["title"]
+
+            assert "description" in response_json
+            response_task_description = response_json["description"]
+            assert response_task_description == body["description"]
+
+            assert "completed" in response_json
+            response_task_completed = response_json["completed"]
+            assert response_task_completed == body["completed"]
