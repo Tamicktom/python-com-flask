@@ -61,8 +61,6 @@ def store_task():
 
     tasks.append(task)
 
-    print(tasks)
-
     return jsonify({
         "message": "Task criada com sucesso"
         }), 201
