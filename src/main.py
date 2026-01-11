@@ -42,7 +42,7 @@ def update_task(id: int):
     task.description = parsedData.description
     task.completed = parsedData.completed
 
-    return jsonify({"message": "Task atualizado com sucesso"})
+    return jsonify({"message": "Task atualizado com sucesso"}), 200
 
 @app.post("/task")
 def store_task():
@@ -65,7 +65,7 @@ def store_task():
 
     return jsonify({
         "message": "Task criada com sucesso"
-        })
+        }), 201
 
 if __name__ == "__main__":
     app.run(debug=True)
