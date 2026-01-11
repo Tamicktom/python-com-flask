@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ValidationError, Field
+from pydantic import BaseModel
 
 class CreateTaskSchema(BaseModel):
     title: str

@@ -24,6 +24,26 @@ def show_task(id: int):
 
     return jsonify({"message": "Task não encontrada"}), 404
 
+@app.put("/tasks/<int:id>")
+def update_task(id: int):
+    task: None | CreateTaskSchema = None
+    for t in tasks:
+        if t.id == id:
+            task = t
+
+    if (task is None):
+        return jsonify({"message": "Task não encontrada"}), 404
+
+    data = request.get_json()
+
+    parsedData = CreateTaskSchema.model_validate(data)
+
+    task.title = parsedData.title
+    task.description = parsedData.description
+    task.completed = parsedData.completed
+
+    return jsonify({"message": "Task atualizado com sucesso"})
+
 @app.post("/task")
 def store_task():
     data = request.get_json()
