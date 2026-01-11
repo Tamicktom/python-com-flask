@@ -64,7 +64,8 @@ def store_task():
     tasks.append(task)
 
     return jsonify({
-        "message": "Task criada com sucesso"
+        "message": "Task criada com sucesso",
+        "id": task.id
         }), 201
 
 @app.delete("/tasks/<int:id>")
