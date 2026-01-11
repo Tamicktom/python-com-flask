@@ -46,7 +46,7 @@ def update_task(id: int):
 
     return jsonify({"message": "Task atualizado com sucesso"}), 200
 
-@app.post("/task")
+@app.post("/tasks")
 def store_task():
     data = request.get_json()
 
